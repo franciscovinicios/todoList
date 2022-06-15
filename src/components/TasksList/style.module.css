@@ -1,0 +1,149 @@
+.tasksStatus {
+  padding-top: 5.18rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.taskProgress {
+  display: flex;
+  justify-content: space-between
+}
+
+.tasksCreated {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--blue-500);
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.totalTasksCreated {
+  width: 1.56rem;
+  height: 1.18rem;
+  padding: 0.125rem 0.5rem 0.125rem 0.5rem;
+  border-radius: 4rem;
+  background: var(--gray-600);
+  color: var(--white);
+}
+
+.completedTasks {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--purple-400);
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.totalTasksCompleted {
+  display: flex;
+  align-items: center;
+  height: 1.18rem;
+  padding: 0.125rem 0.5rem 0.125rem 0.5rem;
+  border-radius: 4rem;
+  background: var(--gray-600);
+  color: var(--white);
+}
+
+.resumeTasks {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-radius: 0.5rem;
+  border-top: 1px solid var(--gray-400);
+}
+
+/* task */
+.task {
+  background: var(--gray-500);
+
+  padding: 1rem;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--white);
+  line-height: 1.225rem;
+}
+
+.task+.task {
+  margin-top: 0.75rem;
+}
+
+.taskContent {
+  display: flex;
+  gap: 1rem;
+
+}
+
+.taskContent p {
+  inline-size: 27rem;
+  overflow-wrap: break-word;
+}
+
+
+@media (max-width: 564px) {
+  .taskContent p {
+    inline-size: 24rem;
+  overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 514px   ) {
+  .taskContent p {
+    inline-size: 22rem;
+  overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .taskContent p {
+    inline-size: 20rem;
+  overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 452px) {
+  .taskContent p {
+    inline-size: 18rem;
+  overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 412px   ) {
+  .taskContent p {
+    inline-size: 16rem;
+  overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 380px   ) {
+  .taskContent p {
+    inline-size: 15rem;
+  overflow-wrap: break-word;
+  }
+}
+
+.button {
+  width: 1.3rem;
+  height: 1.3rem;
+  background: none;
+  color: var(--blue-500)
+}
+
+
+.taskCompleted {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+
+
+.trash {
+  color: var(--gray-300);
+}
+
+svg.check {
+  color: var(--blue-500);
+  background: red;
+}

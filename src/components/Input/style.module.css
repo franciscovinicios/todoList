@@ -1,0 +1,58 @@
+.formContainer {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  gap: 0.5rem;
+
+  margin-top: -1.6rem;
+}
+
+input[type='text'] {
+  flex: 1;
+  height: 3.375rem;
+  padding-left: 1.3rem;
+  color: var(--white);
+
+  background: var(--gray-600);
+  border: 0;
+  border-radius: 8px;
+}
+
+
+
+
+
+button {
+  width: 5.625rem;
+  height: 3.25rem;
+  background: var(--blue-400);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  border: 0;
+  border-radius:0.4rem;
+  cursor: pointer;
+
+  color: var(--white);
+  font-weight: 700;
+}
+
+
+@media (max-width: 404px) {
+  button {
+    width: 4rem;
+    height: 3.25rem ;
+    gap: 0.2rem;
+
+  }
+  
+  span {
+    font-size:0.8rem;
+  }
+}
+
+
+

@@ -1,0 +1,23 @@
+.emptyContentList {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column ;
+  align-items: center;
+  
+}
+
+.emptyContentList img {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.emptyContentList p {
+  font-weight: 700;
+  color: var(--gray-300); 
+  line-height: 1.4rem;
+}
+
+.emptyContentList p + p {
+  font-weight: 400
+} 
