@@ -2,8 +2,13 @@ import { useState } from "react";
 import { Header } from "./components/Header";
 import { Input } from "./components/Input";
 import { TasksList } from "./components/TasksList";
+import { AuthContextProvider } from "./contexts/AuthContex";
+import { Home } from "./pages/Home";
 import styles from './styles/app.module.css'
 import './styles/global.css'
+import { Routes, BrowserRouter, Route } from 'react-router-dom'
+import { TasksAuthContextProvider } from "./contexts/TasksContext";
+import { MyTasks } from "./pages/MyTasks";
 
 export interface Task {
   id: string;
@@ -12,19 +17,24 @@ export interface Task {
 }
 
 export function App() {
-  const [tasks, setTasks] = useState<Task[]>([])
 
-  
+
 
   return (
-    <div>
-      <Header />
-      <div className={styles.wrapper}>
-        <Input setTasks={setTasks} tasks={tasks} />
-        <TasksList tasks={tasks} setTasks={setTasks} />
+    <>
+      <BrowserRouter>
+        <AuthContextProvider>
+          <TasksAuthContextProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/mytasks" element={<MyTasks />} />
 
-      </div>
-    </div>
+            </Routes>
+          </TasksAuthContextProvider>
+        </AuthContextProvider>
+      </BrowserRouter>
+    </>
+
   )
 }
 

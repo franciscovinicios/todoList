@@ -1,0 +1,17 @@
+
+.wrapper {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+span.desconect{
+  margin-top: 3rem;
+  font-size:1rem;
+  text-align: center;
+  display: block;
+  font-weight: 700;
+  color: var(--blue-500);
+
+  cursor: pointer;
+}

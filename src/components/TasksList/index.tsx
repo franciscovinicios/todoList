@@ -1,4 +1,3 @@
-import { Task } from '../../App'
 import { Trash } from "phosphor-react";
 import circleImg from '../../assets/circle.svg'
 import checkImg from '../../assets/check.svg'
@@ -6,7 +5,11 @@ import checkImg from '../../assets/check.svg'
 
 import { EmptyList } from '../EmptyList'
 import styles from './style.module.css'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
+import { Task } from "../../App";
+import { ref, remove, update } from "firebase/database";
+import { useAuth } from "../../hooks/useAuth";
+import { database } from "../../services/firebase";
 
 interface TasksListProps {
   tasks: Task[];
@@ -14,7 +17,8 @@ interface TasksListProps {
 }
 
 export function TasksList({ tasks, setTasks }: TasksListProps) {
-  // const [totalTasksCompleted, setTotalTasksCompleted] = useState(0)
+  const { user } = useAuth()
+
 
   const TotaltasksCompleted = tasks.reduce((acc, task) => {
     if (task.isCompleted) {
@@ -23,24 +27,23 @@ export function TasksList({ tasks, setTasks }: TasksListProps) {
     return acc
   }, 0)
 
-  
 
-  function handleRemoveTask(id: string) {
-    const filteredTasks = tasks.filter(task => task.id !== id)
-    setTasks(filteredTasks);
+  async function handleDeleteTask(taskId: string) {
+
+    if (window.confirm('Tem certeza que voce deseja excluir esta task?')) {
+      const db = await ref(database, `users/${user?.id}/tasks/${taskId}`);
+      remove(db)
+    }
   }
 
 
-
-  function handleToggleTaskCompletion(id: string) {
-    const newTask = tasks.map(task => task.id === id ? {
-      ...task,
-      isCompleted: !task.isCompleted
-    } : task);
-
-
-    setTasks(newTask)
+  async function handleTaskCompleted(taskId: string, ) {
+    if (taskId) {
+      const db = await ref(database, `users/${user?.id}/tasks/${taskId}`);
+      update(db,{ isCompleted : true})
+    } 
   }
+
 
   return (
     <div className={styles.tasksStatus}>
@@ -64,7 +67,7 @@ export function TasksList({ tasks, setTasks }: TasksListProps) {
 
               <div className={styles.taskContent} >
 
-                <button onClick={() => handleToggleTaskCompletion(task.id)} className={styles.button}>
+                <button onClick={() => handleTaskCompleted(task.id)} className={styles.button}>
                   {!task.isCompleted ?
                     <img className={styles.circle} src={circleImg} alt="" /> :
                     <img className={styles.circle} src={checkImg} alt="" />
@@ -74,13 +77,13 @@ export function TasksList({ tasks, setTasks }: TasksListProps) {
                 <p className={task.isCompleted ? styles.taskCompleted : ''}>{task.content}</p>
 
               </div>
-              <button className={styles.button}>
-                <Trash onClick={() => handleRemoveTask(task.id)} size={20} className={styles.trash} />
+              <button onClick={() => handleDeleteTask(task.id,)} className={styles.button}>
+                <Trash  size={20} className={styles.trash} />
               </button>
             </div >
           ))
         ) : (
-          <EmptyList />
+          <EmptyList /> 
         )}
       </div>
 
