@@ -21,7 +21,6 @@ export function App() {
 
 
   return (
-    <>
       <BrowserRouter>
         <AuthContextProvider>
           <TasksAuthContextProvider>
@@ -32,9 +31,7 @@ export function App() {
             </Routes>
           </TasksAuthContextProvider>
         </AuthContextProvider>
-      </BrowserRouter>
-    </>
-
+      </BrowserRouter> 
   )
 }
 

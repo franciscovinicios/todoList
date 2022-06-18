@@ -55,7 +55,7 @@ export function MyTasks() {
         <Input />
 
         <span
-          onClick={handleLogout}
+          onClick={handleLogout} 
           className={styles.desconect}
         >Desconectar
         </span>

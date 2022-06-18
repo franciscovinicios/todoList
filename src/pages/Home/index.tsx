@@ -19,7 +19,7 @@ export function Home() {
 
   useEffect(() => {
     if ((user)) {
-      navigate('/mytasks')
+      navigate('mytasks')
     }
 
   }, [user, navigate])
