@@ -37,14 +37,14 @@ export function MyTasks() {
   useEffect(() => {
     const RedirectLogin = async () => {
       if (await (!user)) {
-        await navigate('/')
+         navigate('/')
       }
     }
 
     return () => {
       RedirectLogin();
     };
-  }, [user, navigate])
+  }, [])
 
 
   return (
