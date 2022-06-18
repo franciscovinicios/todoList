@@ -36,8 +36,9 @@ export function MyTasks() {
 
   useEffect(() => {
     const RedirectLogin = async () => {
-      if (await (!user)) {
+      if (await(!user?.id)) {
          navigate('/')
+         
       }
     }
 

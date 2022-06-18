@@ -86,8 +86,8 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 
   async function SignOut() {
     if(user) {
-      await signOut(auth)
       setUser(undefined)
+      await signOut(auth)
     }
   }
 
