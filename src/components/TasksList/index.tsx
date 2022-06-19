@@ -6,10 +6,16 @@ import checkImg from '../../assets/check.svg'
 import { EmptyList } from '../EmptyList'
 import styles from './style.module.css'
 import { Dispatch, SetStateAction } from 'react';
-import { Task } from "../../App";
+
 import { ref, remove, update } from "firebase/database";
 import { useAuth } from "../../hooks/useAuth";
 import { database } from "../../services/firebase";
+
+export interface Task {
+  id: string;
+  content: string;
+  isCompleted: boolean;
+}
 
 interface TasksListProps {
   tasks: Task[];
@@ -27,6 +33,8 @@ export function TasksList({ tasks, setTasks }: TasksListProps) {
     return acc
   }, 0)
 
+  
+
 
   async function handleDeleteTask(taskId: string) {
 
@@ -36,13 +44,14 @@ export function TasksList({ tasks, setTasks }: TasksListProps) {
     }
   }
 
-
   async function handleTaskCompleted(taskId: string, ) {
     if (taskId) {
       const db = await ref(database, `users/${user?.id}/tasks/${taskId}`);
       update(db,{ isCompleted : true})
     } 
   }
+
+  
 
 
   return (

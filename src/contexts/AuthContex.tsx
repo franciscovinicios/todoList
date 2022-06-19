@@ -1,8 +1,8 @@
 import {  GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { auth, database, signOut } from "../services/firebase";
-import { collection, setDoc, query, where, doc } from "firebase/firestore";
-import { ref, set, update } from "firebase/database";
+import { ref, update } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 
 type User = {
   id: string
@@ -23,8 +23,9 @@ type AuthContextProviderProps = {
 export const AuthContext = createContext({} as AuthContextType)
 
 export function AuthContextProvider(props: AuthContextProviderProps) {
-
   const [user, setUser] = useState<User>()
+  const navigate = useNavigate()
+
 
   
 
@@ -49,6 +50,17 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       unsubscribe()
     }
   }, [])
+
+  useEffect(() => {
+    const RedirectLogin = async () => {
+      if (user) {
+        return 
+      } else if(!user) {
+        navigate('/')
+      }
+    }
+      RedirectLogin();
+  }, [user, navigate])
 
   async function signInWithGoogle() {
     const provider = new GoogleAuthProvider()
@@ -90,6 +102,8 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       await signOut(auth)
     }
   }
+
+
 
   
 

@@ -10,8 +10,6 @@ import { useAuth } from '../../hooks/useAuth';
 
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
-import { database } from '../../services/firebase';
-import { onValue, ref } from 'firebase/database';
 
 export function Home() {
   const navigate = useNavigate()
@@ -19,7 +17,7 @@ export function Home() {
 
   useEffect(() => {
     if ((user)) {
-      navigate('mytasks')
+      navigate('/mytasks')
     }
 
   }, [user, navigate])
@@ -40,18 +38,15 @@ export function Home() {
         }
       });
       navigate('/mytasks')
-    } else if (user) {
-      navigate('/mytasks')
-
-    }
+    } 
   }
 
   return (
     <div className={styles.pageAuth}>
       <aside>
         <img src={IlustrationImg} alt="illustration" />
-        <strong>Controle sobre suas tarefas</strong>
-        <p>Organize seu dia adicionado tarefas</p>
+        <strong>Organize suas tarefas diárias</strong>
+        <p>Crie tarefas e organize seus itens a fazer</p>
       </aside>
 
       <main>

@@ -1,5 +1,3 @@
-import { Firestore } from "firebase/firestore";
-import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
@@ -14,7 +12,6 @@ export function MyTasks() {
   const { tasks, setTasks } = useTasks()
   const { SignOut, user } = useAuth()
   const navigate = useNavigate()
-
 
 
   async function handleLogout() {
@@ -33,19 +30,6 @@ export function MyTasks() {
       navigate('/')
     }
   }
-
-  useEffect(() => {
-    const RedirectLogin = async () => {
-      if (await(!user?.id)) {
-         navigate('/')
-         
-      }
-    }
-
-    return () => {
-      RedirectLogin();
-    };
-  }, [])
 
 
   return (

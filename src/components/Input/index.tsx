@@ -1,9 +1,8 @@
 import styles from './style.module.css'
 import { PlusCircle } from 'phosphor-react'
 
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { ChangeEvent, FormEvent, SetStateAction, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useTasks } from '../../hooks/useTasks';
 import { push, ref, set } from 'firebase/database';
 import { database } from '../../services/firebase';
 import { useAuth } from '../../hooks/useAuth';
@@ -13,12 +12,8 @@ import { useAuth } from '../../hooks/useAuth';
 
 
 export function Input() {
-
-  const { tasks, setTasks } = useTasks()
   const { user } = useAuth()
-
   const [taskContent, setTaskContent] = useState('')
-
 
 
   function handleNewTitle(event: ChangeEvent<HTMLInputElement>) {
@@ -40,9 +35,10 @@ export function Input() {
     const newTaskRef = push(db, 'task')
     set(newTaskRef, task);
 
-
     setTaskContent('')
   }
+
+  
 
   return (
     <form onSubmit={handleCreateNewTask} className={styles.formContainer}>
